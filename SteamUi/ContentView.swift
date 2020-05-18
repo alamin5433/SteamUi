@@ -25,7 +25,8 @@ struct ContentView: View {
                         BottomView()
                     }
                 }else{
-                  //  Detail()
+                  Text("")
+                    Spacer()
                 }
                 
                 
@@ -63,8 +64,8 @@ struct ContentView: View {
                     }
                 }
                 .padding(.horizontal, 30)
-                .padding(.bottom, 30)
-                .padding(.top)
+                .padding(.bottom)
+                .padding(.top,5)
             }
        .padding()
         }
@@ -193,127 +194,128 @@ struct Detail: View {
     var body: some View {
         VStack(spacing: 0){
             Image("Header")
-                
-            ZStack{
-                
-                VStack(spacing: 30){
-                    HStack(spacing: 20){
-                        Button(action: {
-                            self.detailSelect = 0
-                        }) {
-                            Text("About")
-                                .foregroundColor(self.detailSelect == 0 ? .white : .gray)
-                                .padding(.horizontal)
-                                .padding(.vertical, 10)
-                                .background(self.detailSelect == 0 ? Color.gray.opacity(0.2) : Color.clear)
-                                .cornerRadius(10)
-                        }
-
-                        Button(action: {
-                            self.detailSelect = 1
-                        }) {
-                            Text("Media")
-                                .foregroundColor(self.detailSelect == 1 ? .white : .gray)
-                                .padding(.horizontal)
-                                .padding(.vertical, 10)
-                                .background(self.detailSelect == 1 ? Color.gray.opacity(0.2) : Color.clear)
-                                .cornerRadius(10)
-                        }
-                    }
-                    .padding(.top, 40)
-                    // .padding(.bottom)
-                    if self.detailSelect == 0{
-                        Text("Welcome to San Francisco, the birthplace of the technological revolution. Play as young Marcus, a brilliant hacker, and join DedSec, the most celebrated hacker group. Your goal: the largest hacking operation in history.").padding(.vertical, 15)
-
-                        HStack{
-                            Spacer()
-
-                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                                Text("More About This Game >")
-                            }
-                        }
-
-                        HStack{
-
-                            Text("System Requiremnts")
-
-                            Spacer()
-                        }
-
-                        HStack(spacing: 8){
-                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                                Image("min")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                                //.rotationEffect(30)
-                                Text("Minimum Requirements")
+            ScrollView(.vertical, showsIndicators: false) {
+                ZStack{
+                    
+                    VStack(spacing: 30){
+                        HStack(spacing: 20){
+                            Button(action: {
+                                self.detailSelect = 0
+                            }) {
+                                Text("About")
+                                    .foregroundColor(self.detailSelect == 0 ? .white : .gray)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 10)
+                                    .background(self.detailSelect == 0 ? Color.gray.opacity(0.5) : Color.clear)
+                                    .cornerRadius(10)
                             }
 
-                            Spacer()
+                            Button(action: {
+                                self.detailSelect = 1
+                            }) {
+                                Text("Media")
+                                    .foregroundColor(self.detailSelect == 1 ? .white : .gray)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 10)
+                                    .background(self.detailSelect == 1 ? Color.gray.opacity(0.5) : Color.clear)
+                                    .cornerRadius(10)
+                            }
                         }
+                        .padding(.top, 40)
+                        // .padding(.bottom)
+                        if self.detailSelect == 0{
+                            Text("Welcome to San Francisco, the birthplace of the technological revolution. Play as young Marcus, a brilliant hacker, and join DedSec, the most celebrated hacker group. Your goal: the largest hacking operation in history.").padding(.vertical, 15)
 
-                        HStack(spacing: 8){
-                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                                Image("max")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                                //.rotationEffect(30)
-                                Text("Minimum Requirements")
+                            HStack{
+                                Spacer()
+
+                                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                                    Text("More About This Game >")
+                                }
                             }
 
-                            Spacer()
-                        }
+                            HStack{
 
-                    }else{
-                        VStack(alignment: .leading, spacing: 25) {
-                            Text("Images")
-                                .foregroundColor(.white)
-                            //.font(.system(size: 20))
+                                Text("System Requiremnts")
 
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack (spacing: 15){
-                                    ForEach(detail, id: \.self){ detail in
-                                        Image(detail)
+                                Spacer()
+                            }
+
+                            HStack(spacing: 8){
+                                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                                    Image("min")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                    //.rotationEffect(30)
+                                    Text("Minimum Requirements")
+                                }
+
+                                Spacer()
+                            }
+
+                            HStack(spacing: 8){
+                                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                                    Image("max")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                    //.rotationEffect(30)
+                                    Text("Minimum Requirements")
+                                }
+
+                                Spacer()
+                            }
+
+                        }else{
+                            VStack(alignment: .leading, spacing: 25) {
+                                Text("Images")
+                                    .foregroundColor(.white)
+                                //.font(.system(size: 20))
+
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack (spacing: 15){
+                                        ForEach(detail, id: \.self){ detail in
+                                            Image(detail)
+                                        }
                                     }
+
                                 }
 
                             }
+                            .padding(.top)
 
-                        }
-                        .padding(.top)
+                            VStack(alignment: .leading, spacing: 25) {
+                                Text("Video")
+                                    .foregroundColor(.white)
+                                //.font(.system(size: 20))
 
-                        VStack(alignment: .leading, spacing: 25) {
-                            Text("Video")
-                                .foregroundColor(.white)
-                            //.font(.system(size: 20))
-
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack (spacing: 15){
-                                    ForEach(detail, id: \.self){ detail in
-                                        Image(detail)
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack (spacing: 15){
+                                        ForEach(detail, id: \.self){ detail in
+                                            Image(detail)
+                                        }
                                     }
+
                                 }
 
                             }
-
+                            .padding(.top)
                         }
-                        .padding(.top)
-                    }
 
+                    }
+                    .padding()
+
+                    .foregroundColor(.white).opacity(0.5)
+                    .cornerRadius(50)
+                   // Color.clear
                 }
-                .padding()
-
-                .foregroundColor(.white).opacity(0.5)
-                .cornerRadius(50)
-               // Color.clear
+                .background(CustomCurve().fill(Color.black))
+                .edgesIgnoringSafeArea(.bottom)
+                .offset(y: -20)
+                .padding(.bottom, -20)
+                .padding(.horizontal,30)
             }
-            .background(CustomCurve().fill(Color.black))
-            .edgesIgnoringSafeArea(.bottom)
-            .offset(y: -20)
-            .padding(.bottom, -20)
-//            .zIndex(1)
             
-            Spacer()
+
         }
         .background(Color.black)
         .edgesIgnoringSafeArea(.bottom)
